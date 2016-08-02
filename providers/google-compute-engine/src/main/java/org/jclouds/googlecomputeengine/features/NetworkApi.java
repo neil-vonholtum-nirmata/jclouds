@@ -114,17 +114,25 @@ public interface NetworkApi {
    @GET
    ListPage<Network> listPage(@Nullable @QueryParam("pageToken") String pageToken, ListOptions listOptions);
 
+   //Similar for subnetworks
+   @Named("Subnetworks:list")
+   @GET
+   ListPage<Network> listSubnetworkPage(@Nullable @QueryParam("pageToken" String pageToken, ListOptions listOptions));
+   
    /** @see #listPage(String, ListOptions) */
    @Named("Networks:list")
    @GET
    @Transform(NetworkPages.class)
    Iterator<ListPage<Network>> list();
 
+   //Similar for subnetworks
    /** @see #listPage(String, ListOptions) */
    @Named("Networks:list")
    @GET
    @Transform(NetworkPages.class)
    Iterator<ListPage<Network>> list(ListOptions options);
+   
+   //Similar for subnetworks
 
    static final class NetworkPages extends BaseToIteratorOfListPage<Network, NetworkPages> {
 
@@ -142,4 +150,6 @@ public interface NetworkApi {
          };
       }
    }
+   
+   //similar for subnetworks
 }
