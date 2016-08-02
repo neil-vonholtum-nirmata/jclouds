@@ -136,8 +136,12 @@ public interface NetworkApi {
 
       @Override protected Function<String, ListPage<Network>> fetchNextPage(final ListOptions options) {
          return new Function<String, ListPage<Network>>() {
-            @Override public ListPage<Network> apply(String pageToken) {
-               return api.networks().listPage(pageToken, options);
+            @Override public ListPage<Network> apply(String pageToken) { 
+               try{
+                   return api.networks().listPage(pageToken, options);
+               }catch(Exception e){
+                   return api.subnetworks.listPage(pageToken, options);
+               } 
             }
          };
       }
